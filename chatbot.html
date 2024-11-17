@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot UI</title>
+  <!-- Local Bootstrap CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap-icons.css" rel="stylesheet"> <!-- Include Bootstrap Icons -->
+</head>
+<body>
+  <div class="container-fluid vh-100 d-flex">
+    <!-- Sidebar -->
+    <div class="bg-light border-end p-3" style="width: 300px;">
+      <h5>Chats</h5>
+      <button class="btn btn-primary btn-sm w-100 mb-3">New Chat</button>
+      <ul class="list-group">
+        <li class="list-group-item">Chat 1</li>
+        <li class="list-group-item">Chat 2</li>
+        <li class="list-group-item">Chat 3</li>
+      </ul>
+    </div>
+    
+    <!-- Main Chat Area -->
+    <div class="flex-grow-1 d-flex flex-column">
+      <!-- Context Box -->
+      <div class="p-3 border-bottom bg-light">
+        <h5>Context</h5>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Enter paragraph or URL">
+          <button class="btn btn-secondary">Upload File</button>
+          <button class="btn btn-outline-secondary">
+            <i class="bi bi-mic"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Section -->
+      <div class="flex-grow-1 p-3 overflow-auto" style="background: #f8f9fa;">
+        <div id="chat-container">
+          <div class="mb-3">
+            <strong>User:</strong> What is AI?
+            <div class="border p-2 rounded bg-white">AI stands for Artificial Intelligence.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Input -->
+      <div class="p-3 border-top bg-light">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Ask a question">
+          <button class="btn btn-outline-secondary">
+            <i class="bi bi-mic"></i>
+          </button>
+          <button class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local Bootstrap JS -->
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
