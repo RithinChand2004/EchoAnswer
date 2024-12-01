@@ -1,0 +1,106 @@
+:root {
+    --primary-gradient: linear-gradient(90deg, #662D8C, #ED1E79);
+    --primary-color-start: #662D8C;
+    --primary-color-end: #ED1E79;
+  }
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #preloader .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeInOut 2s infinite;
+  }
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  body.loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  /* Navbar */
+  .navbar {
+    background: var(--primary-gradient);
+  }
+
+  /* Button Effects */
+  .btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #ED1E79, #662D8C); /* Reverse gradient on hover */
+    transform: scale(1.05);
+  }
+
+  .btn-outline-secondary:hover {
+    color: white;
+    background: var(--primary-gradient);
+    border-color: var(--primary-color-end);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+
+  /* Scroll Button Animation */
+  .btn-light img {
+    animation: mouseScroll 1.5s infinite;
+  }
+  @keyframes mouseScroll {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  /* Chat area and context styling */
+  .chat-area {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .context-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  .chat-message {
+    margin-bottom: 15px;
+  }
+  .chat-message .user-message {
+    font-weight: bold;
+  }
+  .chat-message .response {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+  }
