@@ -296,3 +296,116 @@
   background: #d01665;
   transform: scale(1.05);
 }
+
+/* 
+-----------------------------------------------------------------  */
+
+/* FAQ Section */
+.faq-section {
+  padding: 50px 20px;
+}
+
+.faq-item {
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.faq-item .accordion-button {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.faq-item .accordion-button:hover {
+  background: linear-gradient(90deg, #ED1E79, #662D8C);
+}
+
+.faq-item .accordion-body {
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 
+---------------------------------------------------------- */
+
+/* Login Form */
+.login-form {
+  max-width: 500px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.login-form .btn-primary {
+  background: var(--primary-gradient);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.login-form .btn-primary:hover {
+  background: linear-gradient(90deg, #ED1E79, #662D8C);
+  transform: scale(1.05);
+}
+
+.login-form .forgot-password {
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.login-form .forgot-password a {
+  text-decoration: none;
+  color: #662D8C;
+}
+
+.login-form .forgot-password a:hover {
+  text-decoration: underline;
+}
+/* 
+------------------------------------------------------------ */
+
+/* Signup Form */
+.signup-form {
+  max-width: 600px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form h2 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.signup-form .btn-primary {
+  background: var(--primary-gradient);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.signup-form .btn-primary:hover {
+  background: linear-gradient(90deg, #ED1E79, #662D8C);
+  transform: scale(1.05);
+}
