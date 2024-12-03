@@ -199,3 +199,58 @@
   padding: 30px;
   text-align: center;
 }
+/* 
+------------------------------------------------------------------------------------ */
+
+/* Profile Card */
+.profile-card {
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  text-align: center;
+  padding: 30px;
+  position: relative;
+  margin-top: -50px;
+}
+.profile-card .profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-top: -60px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 4px solid white;
+}
+.profile-card h2 {
+  margin-top: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.profile-card p {
+  color: gray;
+  font-size: 1rem;
+}
+.profile-card .btn {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.profile-card .btn:hover {
+  background: linear-gradient(90deg, #ED1E79, #662D8C);
+  transform: scale(1.05);
+}
+
+/* Usage Statistics */
+.statistics-section {
+  padding: 40px 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.chart-container {
+  height: 400px;
+}

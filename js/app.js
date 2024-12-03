@@ -19,4 +19,47 @@ window.addEventListener('load', () => {
       }
     });
   });
-  
+// Usage Statistics Chart
+const ctx = document.getElementById('usageChart').getContext('2d');
+const usageChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['2023-12-01', '2023-12-02', '2023-12-03', '2023-12-04'], // Dates for x-axis
+    datasets: [{
+      label: 'Chats per Day',
+      data: [5, 8, 3, 10], // Number of chats for y-axis
+      backgroundColor: 'rgba(102, 45, 140, 0.2)',
+      borderColor: '#662D8C',
+      borderWidth: 2,
+      pointBackgroundColor: '#ED1E79',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#ED1E79',
+      tension: 0.4, // Curve for the line
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top'
+      }
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Date'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Number of Chats'
+        },
+        beginAtZero: true
+      }
+    }
+  }
+});  
