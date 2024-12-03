@@ -116,3 +116,86 @@
     border-radius: 10px;
     padding: 10px;
   }
+/* 
+------------------------------------------------------------------------------------------ */
+/* Hero Section */
+.hero-section {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  clip-path: ellipse(100% 85% at 50% 15%);
+}
+
+.hero-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: fadeInDown 1.5s ease;
+}
+
+.hero-subtext {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  animation: fadeIn 2s ease;
+}
+
+.hero-btn {
+  margin-top: 30px;
+  animation: fadeInUp 2s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Features Section */
+.features-section {
+  padding: 80px 20px;
+}
+
+.feature-box {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Section */
+.footer {
+  background: #662D8C;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
