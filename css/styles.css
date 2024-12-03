@@ -79,6 +79,18 @@
     }
   }
 
+  /* Popover Customization */
+.popover {
+  max-width: 300px; /* Adjust width */
+}
+.list-group-item a {
+  text-decoration: none;
+  color: black;
+}
+.list-group-item a:hover {
+  text-decoration: underline;
+}
+
   /* Chat area and context styling */
   .chat-area {
     background: #f8f9fa;

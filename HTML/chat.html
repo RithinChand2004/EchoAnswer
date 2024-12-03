@@ -57,7 +57,11 @@
         <div class="input-group mb-2">
           <input type="text" class="form-control" placeholder="Enter paragraph">
           <input type="text" class="form-control" placeholder="Enter URL">
-          <button class="btn btn-outline-secondary">
+          <button id="uploadButton" type="button" class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-html="true" data-bs-content="<ul class='list-group'>
+            <li class='list-group-item'><a href='#'>Upload from Computer</a></li>
+            <li class='list-group-item'><a href='#'>Upload from Drive</a></li>
+            <li class='list-group-item'><a href='#'>Upload from OneDrive</a></li>
+          </ul>">
             <i class="bi bi-upload"></i>
           </button>
           <button class="btn btn-outline-secondary">
