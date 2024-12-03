@@ -1,8 +1,12 @@
+//Preloader
 window.addEventListener('load', () => {
     setTimeout(() => {
       document.body.classList.add('loaded');
     }, 3000); // Adjust duration if needed
   });
+
+
+//popover Upload Button
 
   document.addEventListener('DOMContentLoaded', () => {
     // Initialize Bootstrap Popover
@@ -19,6 +23,9 @@ window.addEventListener('load', () => {
       }
     });
   });
+
+
+
 // Usage Statistics Chart
 const ctx = document.getElementById('usageChart').getContext('2d');
 const usageChart = new Chart(ctx, {
@@ -63,3 +70,48 @@ const usageChart = new Chart(ctx, {
     }
   }
 });  
+
+//History Table
+
+// View Chat Functionality
+// function viewChat(chatId) {
+//   alert(`Viewing chat with ID: ${chatId}`);
+//   // Add your logic to display the chat details here
+// }
+
+// // Delete Chat Functionality
+// function deleteChat(chatId) {
+//   if (confirm(`Are you sure you want to delete chat with ID: ${chatId}?`)) {
+//     alert(`Chat with ID: ${chatId} deleted.`);
+//     // Add your logic to delete the chat here
+//   }
+// }
+
+// Handle View Chat Modal
+function viewChat(chatId) {
+  document.getElementById('viewChatId').innerText = chatId; // Set chat ID in modal
+  const viewModal = new bootstrap.Modal(document.getElementById('viewChatModal'));
+  viewModal.show();
+
+  // Confirm View Chat
+  document.getElementById('confirmViewChat').onclick = () => {
+    alert(`Viewing chat with ID: ${chatId}`);
+    viewModal.hide(); // Close the modal
+    // Add your logic to display chat details here
+  };
+}
+
+// Handle Delete Chat Modal
+function deleteChat(chatId) {
+  document.getElementById('deleteChatId').innerText = chatId; // Set chat ID in modal
+  const deleteModal = new bootstrap.Modal(document.getElementById('deleteChatModal'));
+  deleteModal.show();
+
+  // Confirm Delete Chat
+  document.getElementById('confirmDeleteChat').onclick = () => {
+    alert(`Chat with ID: ${chatId} deleted.`);
+    deleteModal.hide(); // Close the modal
+    // Add your logic to delete the chat here
+  };
+}
+

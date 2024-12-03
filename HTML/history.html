@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History - EchoAnswer</title>
+  <link href="../bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">EchoAnswer</a>
+      <button class="btn btn-light">
+        Scroll Down <img src="../assets/mouse.svg" alt="Scroll" width="16" height="16">
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto" style="margin-right: 10px;">
+          <li class="nav-item" style="margin-right: 10px; margin-top: 10px"><a class="btn btn-light btn-sm text-primary" href="history.html">History</a></li>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="About.html">About</a></li>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="profile.html">Profile</a></li>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="FAQ.html">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <h1 class="hero-text">Chat History</h1>
+    <p class="hero-subtext">View and manage your previous conversations</p>
+  </header>
+
+  <!-- Chat History Table -->
+  <div class="container mt-4">
+    <div class="table-responsive history-table">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Chat Title</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>AI Basics</td>
+            <td>2023-12-01</td>
+            <td>
+              <button class="btn btn-view btn-sm" onclick="viewChat(1)">View</button>
+              <button class="btn btn-delete btn-sm" onclick="deleteChat(1)">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Understanding Algorithms</td>
+            <td>2023-12-02</td>
+            <td>
+              <button class="btn btn-view btn-sm" onclick="viewChat(2)">View</button>
+              <button class="btn btn-delete btn-sm" onclick="deleteChat(2)">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Machine Learning Explained</td>
+            <td>2023-12-03</td>
+            <td>
+              <button class="btn btn-view btn-sm" onclick="viewChat(3)">View</button>
+              <button class="btn btn-delete btn-sm" onclick="deleteChat(3)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- View Chat Modal -->
+<div class="modal fade" id="viewChatModal" tabindex="-1" aria-labelledby="viewChatModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewChatModalLabel">View Chat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to view this chat?</p>
+          <p><strong>Chat ID:</strong> <span id="viewChatId"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmViewChat">View Chat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Chat Modal -->
+<div class="modal fade" id="deleteChatModal" tabindex="-1" aria-labelledby="deleteChatModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteChatModalLabel">Delete Chat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this chat? This action cannot be undone.</p>
+          <p><strong>Chat ID:</strong> <span id="deleteChatId"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteChat">Delete Chat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <!-- Bootstrap JS -->
+  <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+  <script src = "../js/app.js   ">
+    
+  </script>
+</body>
+</html>

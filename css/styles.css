@@ -254,3 +254,45 @@
 .chart-container {
   height: 400px;
 }
+/* 
+---------------------------------------------------------------- */
+
+/* Table Styling */
+.history-table {
+  margin-top: 30px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.history-table th {
+  background: var(--primary-gradient);
+  color: white;
+}
+.history-table tbody tr {
+  transition: all 0.3s ease;
+}
+.history-table tbody tr:hover {
+  background: #f8f9fa;
+  transform: scale(1.01);
+}
+
+/* Buttons */
+.btn-view {
+  background: #6a11cb;
+  color: white;
+  transition: all 0.3s ease;
+}
+.btn-view:hover {
+  background: #5a0fab;
+  transform: scale(1.05);
+}
+.btn-delete {
+  background: #ed1e79;
+  color: white;
+  transition: all 0.3s ease;
+}
+.btn-delete:hover {
+  background: #d01665;
+  transform: scale(1.05);
+}
