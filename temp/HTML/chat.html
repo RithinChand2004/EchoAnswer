@@ -43,9 +43,7 @@
       <h5 class="fw-bold">Chats</h5>
       <button class="btn btn-primary btn-sm w-100 mb-3">New Chat</button>
       <ul class="list-group">
-        <li class="list-group-item">Chat 1</li>
-        <li class="list-group-item">Chat 2</li>
-        <li class="list-group-item">Chat 3</li>
+         
       </ul>
     </div>
 
@@ -53,22 +51,29 @@
     <div class="flex-grow-1 d-flex flex-column">
       <!-- Context Box -->
       <div class="context-box">
-        <h5>Context</h5>
+        <h5>Provide Context</h5>
         <div class="input-group mb-2">
-          <input type="text" class="form-control" placeholder="Enter paragraph">
-          <input type="text" class="form-control" placeholder="Enter URL">
-          <button id="uploadButton" type="button" class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-html="true" data-bs-content="<ul class='list-group'>
-            <li class='list-group-item'><a href='#'>Upload from Computer</a></li>
-            <li class='list-group-item'><a href='#'>Upload from Drive</a></li>
-            <li class='list-group-item'><a href='#'>Upload from OneDrive</a></li>
-          </ul>">
-            <i class="bi bi-upload"></i>
-          </button>
-          <button class="btn btn-outline-secondary">
-            <i class="bi bi-mic"></i>
-          </button>
+            <!-- Paragraph Context -->
+            <input type="text" class="form-control mt-2" id="paragraphContext" placeholder="Enter paragraph" rows="3"></textarea>
+    
+            <!-- URL Context -->
+            <input type="text" class="form-control mt-2" id="urlContext" placeholder="Enter URL">
+    
+            <!-- File Upload -->
+            <label for="fileUpload" class="btn btn-outline-secondary mt-2">
+                <i class="bi bi-upload"></i> Upload File
+            </label>
+            <input type="file" id="fileUpload" style="display: none;">
+    
+            <!-- Audio Upload -->
+            <label for="audioUpload" class="btn btn-outline-secondary mt-2">
+                <i class="bi bi-mic"></i> Upload Audio
+            </label>
+            <input type="file" id="audioUpload" accept="audio/*" style="display: none;">
         </div>
-      </div>
+        <button class="btn btn-primary mt-2" id="setContextButton">Set Context</button>
+    </div>
+    
 
       <!-- Chat Section -->
       <div class="flex-grow-1 chat-area">

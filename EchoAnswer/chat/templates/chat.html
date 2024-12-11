@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EchoAnswer UI</title>
+  <!-- Local Bootstrap CSS -->
+  <link href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="logo">EchoAnswer</div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">EchoAnswer</a>
+      <button class="btn btn-light">
+        Scroll Down <img src="{% static 'assets/mouse.svg' %}" alt="Scroll" width="16" height="16">
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto" style="margin-right: 10px;">
+          <li class="nav-item" style="margin-right: 10px; margin-top: 10px"><a class="btn btn-light btn-sm text-primary" href="history.html">History</a></li>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="About.html">About</a></li>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="profile.html">Profile</a></li>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="FAQ.html">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container-fluid vh-100 d-flex">
+    <!-- Sidebar -->
+    <div class="bg-light border-end p-3" style="width: 300px; overflow-y: auto;">
+      <h5 class="fw-bold">Chats</h5>
+      <button class="btn btn-primary btn-sm w-100 mb-3" id="newChatButton">New Chat</button>
+      <ul class="list-group" id="previousChatsList">
+        <!-- Chat items will be dynamically added here -->
+      </ul>
+    </div>
+    
+  
+
+    <!-- Main Chat Area -->
+    <div class="flex-grow-1 d-flex flex-column">
+      <!-- Context Box -->
+      <div class="context-box">
+        <h5>Provide Context</h5>
+        <div class="input-group mb-2">
+            <!-- Paragraph Context -->
+            <input type="text" class="form-control mt-2" id="paragraphContext" placeholder="Enter paragraph" rows="3"></textarea>
+    
+            <!-- URL Context -->
+            <input type="text" class="form-control mt-2" id="urlContext" placeholder="Enter URL">
+    
+            <!-- File Upload -->
+            <label for="fileUpload" class="btn btn-outline-secondary mt-2">
+                <i class="bi bi-upload"></i> Upload File
+            </label>
+            <input type="file" id="fileUpload" style="display: none;">
+    
+            <!-- Audio Upload -->
+            <label for="audioUpload" class="btn btn-outline-secondary mt-2">
+                <i class="bi bi-mic"></i> Upload Audio
+            </label>
+            <input type="file" id="audioUpload" accept="audio/*" style="display: none;">
+        </div>
+        <button class="btn btn-primary mt-2" id="setContextButton">Set Context</button>
+    </div>
+
+      <!-- Chat Section -->
+      <div id="chatArea" class="flex-grow-1 chat-area">
+
+      </div>
+      
+
+      <!-- Question Input -->
+      <div class="p-3 border-top">
+        <div class="input-group">
+            <input type="text" class="form-control" id="questionInput" placeholder="Ask a question">
+            <button id="voiceInputButton" class="btn btn-outline-secondary">
+                <i class="bi bi-mic"></i>
+            </button>
+            <button id="askQuestionButton" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+    
+    </div>
+  </div>
+
+  <!-- Local Bootstrap JS -->
+  <script src="{% static 'bootstrap-5.0.2-dist/js/bootstrap.bundle.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/djchat.js' %}"></script>
+  <script>
+    document.getElementById('newChatButton').addEventListener('click', function () {
+        // Reload the page
+        location.reload();
+    });
+</script>
+
+</body>
+</html>

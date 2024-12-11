@@ -11,7 +11,7 @@ model_name = "bert-large-uncased-whole-word-masking-finetuned-squad"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-def transcribe_audio(audio_path):
+def transcribe_audio1(audio_path):
     # Initialize the recognizer
     recognizer = sr.Recognizer()
 
@@ -88,11 +88,11 @@ def get_answer(context, question):
 # Get and print the answer
 # context = extract_main_text("https://en.wikipedia.org/wiki/Artos_(drink)")
 
-context = extract_text_from_pdf(r"backend logic\testpdf.pdf")
+# context = extract_text_from_pdf(r"backend logic\testpdf.pdf")
 
-# context = transcribe_audio(r"backend logic\testaudio.wav")
+# # context = transcribe_audio(r"backend logic\testaudio.wav")
 
-question = "What is Artos?"
+# question = "What is Artos?"
 
-answer = get_answer(context, question)
-print(f"Answer: {answer}")
+# answer = get_answer(context, question)
+# print(f"Answer: {answer}")

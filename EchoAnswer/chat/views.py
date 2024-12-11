@@ -1,3 +1,139 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import Chat
+from .backend_functions import transcribe_audio1, extract_text_from_pdf, extract_main_text, get_answer
+import json
+import logging
+logger = logging.getLogger(__name__)
 
-# Create your views here.
+@csrf_exempt
+def process_query(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user_input = data.get('question', '')
+        context = data.get('context', '')
+        logger.info(f"Received context: {context[:50]}...")  # Log first 50 characters
+        logger.info(f"Received question: {user_input}")
+        # Generate the bot's response
+        bot_response = get_answer(context, user_input)
+        logger.info(f"Bot response: {bot_response}")
+
+        # Save the chat
+        chat = Chat(user_input=user_input, bot_response=bot_response, context=context)
+        chat.save()
+
+        return JsonResponse({"bot_response": bot_response, "chat_id": str(chat.id)})
+
+
+def fetch_chat_history(request):
+    if request.method == "GET":
+        chats = Chat.objects.all().order_by('-created_at')
+        chat_history = [{"id": str(chat.id), "user_input": chat.user_input, "bot_response": chat.bot_response} for chat in chats]
+        return JsonResponse({"chat_history": chat_history})
+
+
+def view_chat(request, chat_id):
+    try:
+        chat = Chat.objects.get(id=chat.id)
+        return JsonResponse({
+            "id": str(chat.id),
+            "user_input": chat.user_input,
+            "bot_response": chat.bot_response,
+            "context": chat.context,
+            "created_at": chat.created_at,
+        })
+    except Chat.DoesNotExist:
+        return JsonResponse({"error": "Chat not found"}, status=404)
+
+@csrf_exempt
+def extract_text_from_url(request):
+    if request.method == "POST":
+        try:
+            # Parse the JSON body
+            data = json.loads(request.body)
+            url = data.get('url', '')
+
+            if not url:
+                return JsonResponse({"error": "No URL provided"}, status=400)
+
+            # Simulated extracted text (replace with actual extraction logic)
+            extracted_text = extract_main_text(url)
+
+            return JsonResponse({"text": extracted_text}, status=200)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+@csrf_exempt
+def extract_text_from_file(request):
+    if request.method == "POST":
+        uploaded_file = request.FILES.get('file')
+
+        if uploaded_file.content_type == "application/pdf":
+            # Save the uploaded file temporarily
+            with open(uploaded_file.name, 'wb') as temp_file:
+                for chunk in uploaded_file.chunks():
+                    temp_file.write(chunk)
+
+            # Extract text from the PDF
+            extracted_text = extract_text_from_pdf(temp_file.name)
+            return JsonResponse({"text": extracted_text})
+        else:
+            return JsonResponse({"error": "Unsupported file type"}, status=400)
+
+@csrf_exempt
+def transcribe_audio(request):
+    if request.method == "POST":
+        audio_file = request.FILES.get('audio')
+
+        # Save the audio file temporarily
+        with open(audio_file.name, 'wb') as temp_audio:
+            for chunk in audio_file.chunks():
+                temp_audio.write(chunk)
+
+        # Transcribe the audio to text
+        transcribed_text = transcribe_audio1(temp_audio.name)
+        return JsonResponse({"text": transcribed_text})
+
+# @csrf_exempt
+# def transcribe_audio(request):
+#     if request.method == "POST":
+#         audio_file = request.FILES.get("audio")
+
+#         if not audio_file:
+#             return JsonResponse({"error": "No audio file provided"}, status=400)
+
+#         try:
+#             # Save the audio file temporarily
+#             temp_audio_path = f"/tmp/{audio_file.name}"
+#             with open(temp_audio_path, "wb") as temp_audio:
+#                 for chunk in audio_file.chunks():
+#                     temp_audio.write(chunk)
+
+#             # Transcribe the audio to text
+#             transcribed_text = transcribe_audio1(temp_audio_path)
+#             return JsonResponse({"text": transcribed_text})
+
+#         except Exception as e:
+#             return JsonResponse({"error": str(e)}, status=500)
+
+#     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+@csrf_exempt
+def set_paragraph_context(request):
+    if request.method == "POST":
+        try:
+            # Parse the JSON body
+            data = json.loads(request.body)
+            paragraph = data.get("paragraph", "").strip()
+
+            if not paragraph:
+                return JsonResponse({"error": "No paragraph provided"}, status=400)
+
+            # Simulate storing or processing the paragraph
+            # (In a real app, you might save this in a session or database)
+            return JsonResponse({"message": "Context set successfully", "context": paragraph}, status=200)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+    return JsonResponse({"error": "Invalid request method"}, status=405)
