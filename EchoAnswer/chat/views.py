@@ -11,6 +11,49 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from .models import Profile
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.shortcuts import get_object_or_404
+
+
+def land_page(request):
+    return render(request, 'landingpage.html')
+
+
+def how_to_use(request):
+    return render(request, 'howtouse.html')
+
+def faq(request):
+    return render(request, 'faq.html')
+
+
+@login_required
+def history_view(request):
+    user_chats = Chat.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'history.html', {'chats': user_chats})
+
+
+@login_required
+def profile_view(request):
+    if request.method == "POST":
+        user = request.user
+        profile = user.profile
+
+        user.first_name = request.POST.get("first_name", user.first_name)
+        profile.location = request.POST.get("location", profile.location)
+        profile.occupation = request.POST.get("occupation", profile.occupation)
+
+        if "profile_picture" in request.FILES:
+            profile.profile_picture = request.FILES["profile_picture"]
+
+        user.save()
+        profile.save()
+
+        return redirect("profile")
+
+    return render(request, "profile.html", {"user": request.user})
+
+
 
 
 def signup(request):
@@ -18,16 +61,23 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Save profile picture
+
+            # Create a profile for the user
+            profile = Profile.objects.create(user=user)
+
+            # Save profile picture if provided
             if "profile_picture" in request.FILES:
-                profile_picture = request.FILES["profile_picture"]
-                fs = FileSystemStorage()
-                filename = fs.save(profile_picture.name, profile_picture)
-                Profile.objects.create(user=user, profile_picture=filename)
+                profile.profile_picture = request.FILES["profile_picture"]
+                profile.save()
+
             return redirect("login")
     else:
         form = UserCreationForm()
     return render(request, "signup.html", {"form": form})
+
+
+
+
 
 @login_required
 def chat_home(request):
@@ -69,6 +119,7 @@ def fetch_chat_history(request):
                 "id": str(chat.id),
                 "user_input": chat.user_input,
                 "bot_response": chat.bot_response,
+                "created_at": chat.created_at,
             }
             for chat in chats
         ]

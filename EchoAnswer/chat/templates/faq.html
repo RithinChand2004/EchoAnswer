@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EchoAnswer UI</title>
+  <!-- Local Bootstrap CSS -->
+  <link href="{% static 'bootstrap-5.0.2-dist/css/bootstrap.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'landing_page' %}">EchoAnswer</a>
+    <button class="btn btn-light">
+      Scroll Down <img src="{% static 'assets/mouse.svg' %}" alt="Scroll" width="16" height="16">
+    </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto" style="margin-right: 10px;">
+        <li class="nav-item" style="margin-right: 10px; margin-top: 10px"><a class="btn btn-light btn-sm text-primary" href="/howtouse/">HowToUse</a></li>
+        <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="/faq/">Help</a></li>
+        <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="/login/">Login</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <h1 class = hero-text>Frequently Asked Questions</h1>
+    <p class = hero-subtext>Your questions answered</p>
+  </header>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="text-center mb-5">Have Questions? We've Got Answers!</h2>
+      <div class="accordion" id="faqAccordion">
+        <!-- FAQ Item 1 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header" id="faqHeader1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqBody1" aria-expanded="true" aria-controls="faqBody1">
+              <i class="bi bi-question-circle me-2"></i> How do I use the chat application?
+            </button>
+          </h2>
+          <div id="faqBody1" class="accordion-collapse collapse show" aria-labelledby="faqHeader1" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              To use the chat application, simply provide context in the "Context Box," type your questions in the "Chat Area," and get real-time answers. You can also revisit past conversations in the "History" section.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 2 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header" id="faqHeader2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqBody2" aria-expanded="false" aria-controls="faqBody2">
+              <i class="bi bi-question-circle me-2"></i> Is my data secure?
+            </button>
+          </h2>
+          <div id="faqBody2" class="accordion-collapse collapse" aria-labelledby="faqHeader2" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, your data is encrypted and stored securely. We follow industry best practices to ensure your privacy and security.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 3 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header" id="faqHeader3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqBody3" aria-expanded="false" aria-controls="faqBody3">
+              <i class="bi bi-question-circle me-2"></i> Can I customize the AI?
+            </button>
+          </h2>
+          <div id="faqBody3" class="accordion-collapse collapse" aria-labelledby="faqHeader3" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, you can customize the AI to match your preferences. Go to the "Profile" page to access advanced customization settings.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 4 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header" id="faqHeader4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqBody4" aria-expanded="false" aria-controls="faqBody4">
+              <i class="bi bi-question-circle me-2"></i> How do I manage my previous chats?
+            </button>
+          </h2>
+          <div id="faqBody4" class="accordion-collapse collapse" aria-labelledby="faqHeader4" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              You can manage your past conversations in the "History" page. Use the "View" button to review details or "Delete" to remove chats permanently.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="{% static 'bootstrap-5.0.2-dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

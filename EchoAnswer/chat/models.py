@@ -10,6 +10,12 @@ class Chat(models.Model):
 
     def __str__(self):
         return f"Chat {self.id} - {self.created_at}"
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to="profile_pictures/")
+    profile_picture = models.ImageField(upload_to="profile_pictures/", null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
+    occupation = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f"Profile of {self.user.username}"

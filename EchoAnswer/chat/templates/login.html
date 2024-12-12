@@ -13,9 +13,23 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="{% url 'chat_home' %}">EchoAnswer</a>
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'landing_page' %}">EchoAnswer</a>
+    <button class="btn btn-light">
+      Scroll Down <img src="{% static 'assets/mouse.svg' %}" alt="Scroll" width="16" height="16">
+    </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto" style="margin-right: 10px;">
+        <li class="nav-item" style="margin-right: 10px; margin-top: 10px"><a class="btn btn-light btn-sm text-primary" href="/howtouse/">HowToUse</a></li>
+        <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="/faq/">Help</a></li>
+        <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="/login/">Login</a></li>
+        
+      </ul>
     </div>
+  </div>
 </nav>
 
 <!-- Hero Section -->
