@@ -32,7 +32,14 @@
           <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="About.html">About</a></li>
           <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="profile.html">Profile</a></li>
           <li class="nav-item" style="margin-right: 10px; margin-top:10px"><a class="btn btn-light btn-sm text-primary" href="FAQ.html">Help</a></li>
-        </ul>
+          <li class="nav-item" style="margin-right: 10px; margin-top:10px">
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm text-white">Logout</button>
+            </form>
+        </li>
+        
+              </ul>
       </div>
     </div>
   </nav>
@@ -106,7 +113,7 @@
         // Reload the page
         location.reload();
     });
-</script>
+  </script>
 
 </body>
 </html>

@@ -5,31 +5,75 @@ from .backend_functions import transcribe_audio1, extract_text_from_pdf, extract
 import json
 import logging
 logger = logging.getLogger(__name__)
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
+from .models import Profile
 
+
+def signup(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Save profile picture
+            if "profile_picture" in request.FILES:
+                profile_picture = request.FILES["profile_picture"]
+                fs = FileSystemStorage()
+                filename = fs.save(profile_picture.name, profile_picture)
+                Profile.objects.create(user=user, profile_picture=filename)
+            return redirect("login")
+    else:
+        form = UserCreationForm()
+    return render(request, "signup.html", {"form": form})
+
+@login_required
+def chat_home(request):
+    return render(request, 'chat.html')
+
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
 @csrf_exempt
 def process_query(request):
     if request.method == "POST":
         data = json.loads(request.body)
         user_input = data.get('question', '')
         context = data.get('context', '')
-        logger.info(f"Received context: {context[:50]}...")  # Log first 50 characters
-        logger.info(f"Received question: {user_input}")
+
+        # # Log for debugging
+        # logger.info(f"Received context: {context[:50]}...")
+        # logger.info(f"Received question: {user_input}")
+
         # Generate the bot's response
         bot_response = get_answer(context, user_input)
         logger.info(f"Bot response: {bot_response}")
 
-        # Save the chat
-        chat = Chat(user_input=user_input, bot_response=bot_response, context=context)
+        # Save the chat, associating it with the logged-in user
+        chat = Chat(user_input=user_input, bot_response=bot_response, context=context, user=request.user)
         chat.save()
 
         return JsonResponse({"bot_response": bot_response, "chat_id": str(chat.id)})
 
 
+
+@login_required
 def fetch_chat_history(request):
     if request.method == "GET":
-        chats = Chat.objects.all().order_by('-created_at')
-        chat_history = [{"id": str(chat.id), "user_input": chat.user_input, "bot_response": chat.bot_response} for chat in chats]
+        chats = Chat.objects.filter(user=request.user).order_by("-created_at")  # Filter by user
+        chat_history = [
+            {
+                "id": str(chat.id),
+                "user_input": chat.user_input,
+                "bot_response": chat.bot_response,
+            }
+            for chat in chats
+        ]
         return JsonResponse({"chat_history": chat_history})
+
 
 
 def view_chat(request, chat_id):
