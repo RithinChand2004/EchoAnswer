@@ -14,6 +14,8 @@ from .models import Profile
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import get_object_or_404
+from django.db.models import Count
+from django.db.models.functions import TruncDate
 
 
 def land_page(request):
@@ -190,29 +192,6 @@ def transcribe_audio(request):
         transcribed_text = transcribe_audio1(temp_audio.name)
         return JsonResponse({"text": transcribed_text})
 
-# @csrf_exempt
-# def transcribe_audio(request):
-#     if request.method == "POST":
-#         audio_file = request.FILES.get("audio")
-
-#         if not audio_file:
-#             return JsonResponse({"error": "No audio file provided"}, status=400)
-
-#         try:
-#             # Save the audio file temporarily
-#             temp_audio_path = f"/tmp/{audio_file.name}"
-#             with open(temp_audio_path, "wb") as temp_audio:
-#                 for chunk in audio_file.chunks():
-#                     temp_audio.write(chunk)
-
-#             # Transcribe the audio to text
-#             transcribed_text = transcribe_audio1(temp_audio_path)
-#             return JsonResponse({"text": transcribed_text})
-
-#         except Exception as e:
-#             return JsonResponse({"error": str(e)}, status=500)
-
-#     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 
 @csrf_exempt
@@ -232,3 +211,19 @@ def set_paragraph_context(request):
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+@login_required
+def chat_stats(request):
+    # Group chats by date and count for the logged-in user
+    stats = (
+        Chat.objects.filter(user=request.user)
+        .annotate(date=TruncDate('created_at'))
+        .values('date')
+        .annotate(chat_count=Count('id'))
+        .order_by('date')
+    )
+
+    dates = [stat['date'].strftime('%Y-%m-%d') for stat in stats]
+    chat_counts = [stat['chat_count'] for stat in stats]
+
+    return JsonResponse({'dates': dates, 'chat_counts': chat_counts})

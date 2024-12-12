@@ -13,6 +13,6 @@ urlpatterns = [
     path('extract_text_from_file/', views.extract_text_from_file, name='extract_text_from_file'),
     path('transcribe_audio/', views.transcribe_audio, name='transcribe_audio'),
     path('set_paragraph_context/', views.set_paragraph_context, name='set_paragraph_context'),
-    
+    path('profile/chat-stats/', views.chat_stats, name='chat_stats'),
     
 ]
