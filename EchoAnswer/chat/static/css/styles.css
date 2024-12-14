@@ -363,6 +363,7 @@
   background: var(--primary-gradient);
   border: none;
   transition: all 0.3s ease;
+  
 }
 
 .login-form .btn-primary:hover {
