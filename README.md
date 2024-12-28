@@ -1,6 +1,10 @@
 # EchoAnswer
- This is a tool which uses the power of AI to answer your questions based on context
-# EchoAnswer
+
+Abstract
+
+This project proposes the development of EchoAnswer, an intelligent chatbot system designed to offer dynamic, context-aware conversational interactions. The system is envisioned to leverage Django as the backend framework to integrate advanced natural language processing (NLP) techniques for real-time question answering. Users will be able to provide context through various formats such as text paragraphs, URLs, file uploads, and audio transcriptions, enabling the chatbot to deliver precise and context-driven responses. The application aims to incorporate user management features, allowing users to create accounts, log in securely, and manage their profiles with custom details and profile pictures. User-specific chat histories will be maintained, enabling users to view and analyze their previous interactions.
+
+To enhance usability, the project envisions a responsive and user-friendly interface designed with Bootstrap, featuring a sidebar for quick navigation of recent chats and dedicated pages for FAQs and tutorials. The system will also include dynamic visual analytics to display personalized usage statistics, such as chats per day. Media handling capabilities, including file uploads and profile picture storage, are planned to support enhanced functionality. With these features, EchoAnswer aims to establish a robust platform suitable for applications in customer service, education, and knowledge management, delivering a scalable and intelligent conversational system.
 
 ## Table of Contents
 
@@ -28,7 +32,7 @@ Before cloning and running the project, ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/EchoAnswer.git
+   git clone https://github.com/RithinChand2004/EchoAnswer
    cd EchoAnswer
    ```
 
@@ -215,4 +219,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ---
 
-For further details or questions, please contact [Your Name](mailto:your.email@example.com).
+For further details or questions, please contact [Rithin Chand V](mailto:rithinchand2004@gmail.com).
