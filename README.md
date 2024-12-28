@@ -22,7 +22,6 @@ Before cloning and running the project, ensure you have the following installed:
 - Python 3.9 or higher
 - Django 5.1
 - PostgreSQL
-- Node.js (for managing frontend assets if needed)
 - pip and virtualenv
 
 ### Installation Steps
